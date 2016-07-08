@@ -1,14 +1,20 @@
 keystone = require "keystone"
 Rsvp     = keystone.list "Rsvp"
 
-exports = module.exports = (req, { locals }) ->
+log = require "../../lib/log"
+
+exports = module.exports = (req, res, next) ->
 	view = new keystone.View req, res
 
-	locals.section          = "rsvp"
-	locals.overnachtenTypes = Rsvp.fields.overnachten.ops;
-	locals.formData         = req.body or {}
-	locals.error            = {}
-	locals.submitted        = false
+	{ locals } = res
+
+	locals.section        = "rsvp"
+	locals.aantalTypes    = Rsvp.fields.aantal.ops
+	locals.komtTypes      = Rsvp.fields.komt.ops
+	locals.overnachtTypes = Rsvp.fields.overnachten.ops
+	locals.formData       = req.body or {}
+	locals.errors         = {}
+	locals.submitted      = false
 
 	view.on "post", action: "rsvp", (next) ->
 		updater = (new Rsvp.model()).getUpdateHandler req

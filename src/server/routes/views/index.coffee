@@ -7,8 +7,6 @@ module.exports = (req, res, next) ->
 	locals = res.locals
 	user   = locals.user
 
-	console.log user
-
 	view.on "init", (next) ->
 		next()
 		# unless user

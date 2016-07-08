@@ -33,9 +33,7 @@ User.add
 
 User.schema
 	.virtual "canAccessKeystone"
-	.get ->
-		console.log "can access keystone?", @isAdmin
-		@isAdmin
+	.get -> @isAdmin
 
 User.defaultColumns = "name, email, isAdmin"
 User.register()

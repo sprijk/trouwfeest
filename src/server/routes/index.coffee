@@ -22,13 +22,4 @@ exports = module.exports = (app) ->
 	app.use bodyParser.json()
 
 	app.all "/",      routes.views.index
-	app.all "/rspv" , routes.views.rspv
-
-	# api = express.Router()
-
-	# api.use "/widgets",       require "./api/widgets"
-	# api.use "/config",        require "./api/config"
-	# api.use "/migrate",       require "./api/migrate"
-	# api.use "/user",          require "./api/user"
-
-	# app.use "/api/v1",        api
+	app.all "/rsvp" , routes.views.rsvp

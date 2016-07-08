@@ -24,33 +24,63 @@ block content
 					input(type="hidden", name="action", value="rsvp")
 
 					.form-group(class=errors.naam ? "has-error" : null)
-						label.col-sm-2.text-left.control-label Naam
+						label.col-sm-2.text-left.control-label naam
 						.col-sm-10
-							input(type="text" name="naam.full" value=formData["naam.full"] required placeholder="Voornaam Achternaam").form-control
+							input(type="text" name="naam.full" value=formData["naam.full"] required placeholder="Voor- en achternaam").form-control
 
 					.form-group(class=errors.email ? "has-error" : null)
-						label.col-sm-2.control-label E-mailadres
+						label.col-sm-2.control-label e-mailadres
 						.col-sm-10
-							input(type="email" name="email" value=formData.email required placeholder="name@domain.com").form-control
-					//- .form-group
-					//- 	label.col-sm-2.control-label Phone
-					//- 	.col-sm-10
-					//- 		input(type="text" name="phone" value=formData.phone placeholder="(optional)").form-control
+							input(type="email" name="email" value=formData.email required placeholder="je@email.nl").form-control
 
-					.form-group(class=errors.overnachten ? "has-error" : null required)
-						label.col-sm-2.control-label Overnachten
+					.form-group(class=errors.komt ? "has-error" : null)
+						label.col-sm-2.control-label ben je erbij?
 						.col-sm-10
-							select(name="overnachten").form-control
-								option(value="") (required)
-								each type in overnachtenTypes
-									option(value=type.value selected=formData.overnachten === type.value)= type.label
+							each type in komtTypes
+								- var selectedType = formData.komt || komtTypes[0].value;
+								label.radio-inline
+									input(
+										type="radio"
+										name="komt"
+										value=type.value
+										checked=selectedType == type.value
+									)
+									| #{type.label}
 
-					.form-group(class=errors.bericht ? "has-error" : null)
-						label.col-sm-2.control-label Bericht
+					.form-group(class=errors.aantal ? "has-error" : null)
+						label.col-sm-2.control-label aantal personen
 						.col-sm-10
-							textarea(name="bericht" placeholder="Laat ons een bericht achter..." rows=4 required).form-control= formData.bericht
+							each type in aantalTypes
+								- var selectedType = formData.aantal || aantalTypes[0].value;
+								label.radio-inline
+									input(
+										type="radio"
+										name="aantal"
+										value=type.value
+										checked=selectedType == type.value
+									)
+									| #{type.label}
+
+					.form-group(class=errors.overnachten ? "has-error" : null)
+						label.col-sm-2.control-label overnachting
+						.col-sm-10
+							each type in overnachtTypes
+								- var selectedType = formData.overnachten || overnachtTypes[0].value;
+								.radio
+									label
+										input(
+											type="radio"
+											name="overnachten"
+											value=type.value
+											checked=selectedType == type.value
+										)
+										| #{type.label}
+
+					.form-group(class=errors.berichtje ? "has-error" : null)
+						label.col-sm-2.control-label berichtje
+						.col-sm-10
+							textarea(name="berichtje" placeholder="Laat ons eventueel een berichtje achter!" rows=5).form-control= formData.berichtje
 
 					.form-group
 						.col-sm-10.col-sm-offset-2
-							p.help-block Note: others can see your enquiry in the <a href="/keystone/enquiries">Admin UI</a>
 							button(type="submit").btn.btn-primary RSVP!

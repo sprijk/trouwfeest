@@ -7,5 +7,5 @@
   copy:          enabled: true
   watch:         enabled: true
   forever:       enabled: false
-  nodemon:       enabled: true
+  nodemon:       enabled: true, extensions: [ "js" ]
   tests:         enabled: false

@@ -15,7 +15,7 @@ exports.flashMessages = (req, res, next) ->
 		warning: req.flash "warning"
 		error:   req.flash "error"
 
-	res.locals.messages = if _.any flashMessages, (msgs) -> msgs.lengtht then flashMessages else false
+	res.locals.messages = if (_.any flashMessages, (msgs) -> msgs.length) then flashMessages else false
 
 	next()
 
