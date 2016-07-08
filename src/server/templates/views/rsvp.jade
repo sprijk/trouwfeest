@@ -1,0 +1,56 @@
+extends ../layouts/default
+
+block content
+	if submitted
+		.jumbotron.text-center
+			h1 Joepie!
+			if user
+				p Head over to the Admin UI to see your enquiry:
+				a(href="/keystone/enquiries").btn.btn-lg.btn-primary Admin UI
+			else
+				p(style="margin-left: 10vw; margin-right: 10vw;") To see your enquiry, sign in with the username
+					code demo@keystonejs.com
+					|  and the password
+					code demo
+					|  then go to the enquiries list.
+				a(href="/keystone/signin").btn.btn-lg.btn-primary Sign In
+
+	else
+		.page-header
+			h1 RSVP
+		.row
+			.col-xs-12
+				form(method="post").form-horizontal
+					input(type="hidden", name="action", value="rsvp")
+
+					.form-group(class=errors.naam ? "has-error" : null)
+						label.col-sm-2.text-left.control-label Naam
+						.col-sm-10
+							input(type="text" name="naam.full" value=formData["naam.full"] required placeholder="Voornaam Achternaam").form-control
+
+					.form-group(class=errors.email ? "has-error" : null)
+						label.col-sm-2.control-label E-mailadres
+						.col-sm-10
+							input(type="email" name="email" value=formData.email required placeholder="name@domain.com").form-control
+					//- .form-group
+					//- 	label.col-sm-2.control-label Phone
+					//- 	.col-sm-10
+					//- 		input(type="text" name="phone" value=formData.phone placeholder="(optional)").form-control
+
+					.form-group(class=errors.overnachten ? "has-error" : null required)
+						label.col-sm-2.control-label Overnachten
+						.col-sm-10
+							select(name="overnachten").form-control
+								option(value="") (required)
+								each type in overnachtenTypes
+									option(value=type.value selected=formData.overnachten === type.value)= type.label
+
+					.form-group(class=errors.bericht ? "has-error" : null)
+						label.col-sm-2.control-label Bericht
+						.col-sm-10
+							textarea(name="bericht" placeholder="Laat ons een bericht achter..." rows=4 required).form-control= formData.bericht
+
+					.form-group
+						.col-sm-10.col-sm-offset-2
+							p.help-block Note: others can see your enquiry in the <a href="/keystone/enquiries">Admin UI</a>
+							button(type="submit").btn.btn-primary RSVP!

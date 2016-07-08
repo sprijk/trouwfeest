@@ -1,0 +1,15 @@
+mixin modal(id, title)
+	div(id=id).modal.fade
+		.modal-dialog
+			.modal-content
+				.modal-header
+					button.close(data-dismiss="modal" aria-label="Close")
+						span(aria-hidden="true") &times;
+					h4.modal-title= title
+				form(method="post" id="modal-" + id)
+					.modal-body
+						input(type="hidden" name="type" value=id)
+						block
+					.modal-footer
+						button.btn.btn-danger(type="button" data-dismiss="modal")= t('general.close')
+						button.btn.btn-viriciti(type="submit")= t('general.save')

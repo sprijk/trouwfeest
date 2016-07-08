@@ -1,0 +1,8 @@
+.git
+src
+docs
+test
+.gitignore
+gulpfile.coffee
+cfg.js.sample
+node_modules

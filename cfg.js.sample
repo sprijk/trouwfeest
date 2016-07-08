@@ -1,0 +1,25 @@
+var config = {
+	log: { label: "trouwfeest" },
+	server: {
+		host:  "localhost",
+		port:  4000,
+		ssl:   false,
+		proxy: false,
+		cookieSecret: "xxx"
+	},
+	db: { name: "trouwfeest" },
+	email: {
+		redisport: {
+			redisHost: "nat",
+			redisPort: 9090,
+			project: "vems",
+			host: "hytruckold",
+			env: "production"
+		},
+		identity: "portal",
+		role: "emailer-rpc",
+		timeout: 5000
+	}
+};
+
+module.exports = config;
