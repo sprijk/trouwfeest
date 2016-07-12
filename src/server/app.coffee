@@ -14,7 +14,7 @@ keystone.init
 	"views":         "templates/views"
 	"view engine":   "jade"
 	"auto update":   true
-	"mongo":         process.env.MONGO_URI || "mongodb://localhost/trouwfeest"
+	"mongo":         config.mongo
 	# "session":       true
 	"session":       false
 	"auth":          true
