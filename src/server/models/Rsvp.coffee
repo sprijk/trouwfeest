@@ -3,7 +3,6 @@ keystone = require "keystone"
 Types = keystone.Field.Types
 
 Rsvp = new keystone.List "Rsvp",
-	map:         name: "naam"
 	defaultSort: "-gemaaktOp"
 
 Rsvp.add
@@ -11,23 +10,11 @@ Rsvp.add
 		required:    true
 		initial:     true
 		type:        Types.Email
-		index:       true
-		unique:      true
 
 	naam:
 		required:    true
 		initial:     true
-		type:        Types.Name
-
-	komt:
-		required:    true
-		initial:     true
-		type:        Types.Select
-		emptyOption: false
-		options: [
-			{ value: "wel",  label: "Ik kom! ;)"   }
-			{ value: "niet", label: "Ik ben er helaas niet bij..." }
-		]
+		type:        Types.Text
 
 	aantal:
 		initial:     true
@@ -41,6 +28,7 @@ Rsvp.add
 			{ value: 4, label: "vier" }
 			{ value: 5, label: "vijf" }
 			{ value: 6, label: "zes"  }
+			{ value: 0, label: "Ik / wij kom(en) helaas niet..."  }
 		]
 
 	overnachten:
@@ -58,8 +46,9 @@ Rsvp.add
 		type: Types.Textarea
 
 	gemaaktOp:
-		type:    Date
+		type:    Types.Datetime
 		default: Date.now
+		noedit:  true
 
-Rsvp.defaultColumns = "name, email, komt, aantal, overnachten, gemaaktOp"
+Rsvp.defaultColumns = "email, naam, aantal, overnachten, berichtje, gemaaktOp"
 Rsvp.register()

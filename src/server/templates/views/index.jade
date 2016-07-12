@@ -1,40 +1,20 @@
 extends ../layouts/default
 
 block content
+	.page-header
+		h1: em(data-txt="home.title")
 
-	button.btn.btn-primary.btn-lg(type="button" data-toggle="modal" data-target="#my-modal") Launch demo modal
+		p(data-txt="home.intro-text")
 
-	#my-modal.modal.fade(tabindex="-1" role="dialog")
-		.modal-dialog(role="document")
-			.modal-content
-				.modal-header
-					button.close(type="button" data-dismiss="modal"): span &times;
-					h4#my-modal-label.modal-title Modal title
+	p
+		strong(data-txt="home.rsvp-text") Laat weten of je komt:&nbsp;
+		span &nbsp;&nbsp;
+		a(href="/rsvp").btn.btn-primary.btn-lg
+			| RSVP!
+			br
+			small(style="font-size: 60%;")
+				em (klik hier)
 
-				.modal-body
-					form.form-horizontal(action="post")
-						.form-group
-							label.col-sm-3.control-label(for="email") E-mailadres
-							.col-sm-9
-								input#email.form-control(type="email" placeholder="E-mailadres")
+	hr
 
-						.form-group
-							label.col-sm-3.control-label(for="name") Naam
-							.col-sm-9
-								input#name.form-control(type="text" placeholder="Naam")
-
-						.form-group
-							.col-sm-offset-3.col-sm-9
-								.checkbox
-									label
-										input(type="checkbox")
-										| Ik heb interesse in dingen
-
-						.form-group
-							.col-sm-offset-3.col-sm-9
-								button.btn.btn-default(type="submit") Verstuur
-
-				.modal-footer
-					button.btn.btn-default(type="button" data-dismiss="modal") Close
-					button.btn.btn-primary(type="button") Save changes
-
+	p(data-txt="home.info-text")

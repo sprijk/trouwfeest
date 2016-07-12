@@ -1,57 +1,42 @@
 extends ../layouts/default
 
 block content
-	if submitted
-		.jumbotron.text-center
-			h1 Joepie!
-			if user
-				p Head over to the Admin UI to see your enquiry:
-				a(href="/keystone/enquiries").btn.btn-lg.btn-primary Admin UI
+
+	if rsvp
+		.page-header
+			if rsvp.aantal > 0
+				div(data-txt="rsvp.will-attend") is erbij
 			else
-				p(style="margin-left: 10vw; margin-right: 10vw;") To see your enquiry, sign in with the username
-					code demo@keystonejs.com
-					|  and the password
-					code demo
-					|  then go to the enquiries list.
-				a(href="/keystone/signin").btn.btn-lg.btn-primary Sign In
+				div(data-txt="rsvp.will-not-attend") is er niet bij
+
+		nav
+			ul.pager
+				li.previous
+					a(href="/")
+						span &larr;&nbsp;
+						| Terug
 
 	else
 		.page-header
-			h1 RSVP
+			h1: em(data-txt="rsvp.title") titel
+			div(data-txt="rsvp.intro") intro
+
 		.row
 			.col-xs-12
 				form(method="post").form-horizontal
 					input(type="hidden", name="action", value="rsvp")
 
-					.form-group(class=errors.naam ? "has-error" : null)
-						label.col-sm-2.text-left.control-label naam
-						.col-sm-10
-							input(type="text" name="naam.full" value=formData["naam.full"] required placeholder="Voor- en achternaam").form-control
-
 					.form-group(class=errors.email ? "has-error" : null)
-						label.col-sm-2.control-label e-mailadres
-						.col-sm-10
-							input(type="email" name="email" value=formData.email required placeholder="je@email.nl").form-control
+						label.col-sm-4.control-label e-mailadres
+						.col-sm-8
+							input(type="email" name="email" value=formData.email required placeholder="jouw@email.nl").form-control
 
-					.form-group(class=errors.komt ? "has-error" : null)
-						label.col-sm-2.control-label ben je erbij?
-						.col-sm-10
-							each type in komtTypes
-								- var selectedType = formData.komt || komtTypes[0].value;
-								label.radio-inline
-									input(
-										type="radio"
-										name="komt"
-										value=type.value
-										checked=selectedType == type.value
-									)
-									| #{type.label}
-
-					.form-group(class=errors.aantal ? "has-error" : null)
-						label.col-sm-2.control-label aantal personen
-						.col-sm-10
+					.form-group#aantal(class=errors.aantal ? "has-error" : null)
+						label.col-sm-4.control-label aantal personen
+						.col-sm-8
 							each type in aantalTypes
-								- var selectedType = formData.aantal || aantalTypes[0].value;
+								// - var selectedType = formData.aantal || aantalTypes[0].value;
+								- var selectedType = formData.aantal;
 								label.radio-inline
 									input(
 										type="radio"
@@ -61,11 +46,14 @@ block content
 									)
 									| #{type.label}
 
+					div#namen
+
 					.form-group(class=errors.overnachten ? "has-error" : null)
-						label.col-sm-2.control-label overnachting
-						.col-sm-10
+						label.col-sm-4.control-label overnachting
+						.col-sm-8
 							each type in overnachtTypes
-								- var selectedType = formData.overnachten || overnachtTypes[0].value;
+								// - var selectedType = formData.overnachten || overnachtTypes[0].value;
+								- var selectedType = formData.overnachten;
 								.radio
 									label
 										input(
@@ -77,10 +65,10 @@ block content
 										| #{type.label}
 
 					.form-group(class=errors.berichtje ? "has-error" : null)
-						label.col-sm-2.control-label berichtje
-						.col-sm-10
+						label.col-sm-4.control-label berichtje
+						.col-sm-8
 							textarea(name="berichtje" placeholder="Laat ons eventueel een berichtje achter!" rows=5).form-control= formData.berichtje
 
 					.form-group
-						.col-sm-10.col-sm-offset-2
-							button(type="submit").btn.btn-primary RSVP!
+						.col-sm-8.col-sm-offset-4
+							button(type="submit").btn.btn-primary.btn-lg Verzend!
