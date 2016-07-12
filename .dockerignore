@@ -5,4 +5,5 @@ test
 .gitignore
 gulpfile.coffee
 cfg.js.sample
+cfg.js
 node_modules

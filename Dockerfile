@@ -1,8 +1,11 @@
-FROM docker.viriciti.com/modules:master-5
+FROM node:argon
+
+RUN echo "Europe/Amsterdam" > /etc/timezone
 
 COPY . /app
 
-RUN ln -s /modules/node_modules /app/node_modules
+RUN cd /app && npm install --production
 
 WORKDIR /app
+
 CMD ["/usr/local/bin/node", "app.js"]
