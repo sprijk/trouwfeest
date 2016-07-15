@@ -39,7 +39,9 @@ Rsvp.add
 			{ value: "camping",     label: "Ik wil een plek op de camping" }
 			{ value: "trekkershut", label: "Doe mij een trekkershut als dat lukt" }
 			{ value: "hotel",       label: "Ik zit in een hotel" }
+			{ value: "haven",       label: "Ik slaap op mijn boot in de haven" }
 			{ value: "geen",        label: "Ik ga 's avonds laat weer naar huis" }
+			{ value: "anders",      label: "Iets anders: zie mijn berichtje onderdaan" }
 		]
 
 	berichtje:

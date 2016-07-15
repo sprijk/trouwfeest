@@ -1,10 +1,6 @@
-FROM node:argon
-
-RUN echo "Europe/Amsterdam" > /etc/timezone
+FROM docker.viriciti.com/trouwfeest-modules:1
 
 COPY . /app
-
-RUN cd /app && npm install --production
 
 WORKDIR /app
 
