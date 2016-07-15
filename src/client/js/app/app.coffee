@@ -10,7 +10,7 @@ removeGroups = ($namen, delta) ->
 		.each (elem) ->
 			$(this).remove()
 
-addGroups = ($namen, delta) ->
+addGroups = ($namen, delta, current) ->
 	for i in [1..delta]
 		$group = $ "<div>"
 			.attr
@@ -51,4 +51,4 @@ $ ->
 		delta = amount - current
 
 		if      delta < 0 then removeGroups $namen, delta
-		else if delta > 0 then addGroups    $namen, delta
+		else if delta > 0 then addGroups    $namen, delta, current
