@@ -41,7 +41,7 @@ Rsvp.add
 			{ value: "hotel",       label: "Ik zit in een hotel" }
 			{ value: "haven",       label: "Ik slaap op mijn boot in de haven" }
 			{ value: "geen",        label: "Ik ga 's avonds laat weer naar huis" }
-			{ value: "anders",      label: "Iets anders: zie mijn berichtje onderdaan" }
+			{ value: "anders",      label: "Iets anders: zie mijn berichtje onder" }
 		]
 
 	berichtje:
